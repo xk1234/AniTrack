@@ -1,0 +1,40 @@
+.form-control {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-control label {
+  margin-bottom: 0.6em;
+}
+
+.submit-btn {
+  background: var(--secondary-300);
+  width: 100%;
+  border-radius: 0;
+  border-color: var(--secondary-300);
+  margin-top: 1em;
+}
+
+.submit-btn:hover {
+  background: var(--secondary-100);
+  width: 100%;
+  border-radius: 0;
+  border-color: var(--secondary-100);
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 1.2em 0;
+}
+
+#main {
+  background-color: var(--success-300);
+  width: 100%;
+}
+
+@media (min-width: 800px) {
+  form {
+    max-width: 40vw;
+  }
+}

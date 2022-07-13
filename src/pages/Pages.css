@@ -1,0 +1,37 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 145px);
+  align-items: center;
+  gap: 10%;
+}
+
+.info .stats-box,
+.dashboard > * {
+  margin-bottom: 2em;
+}
+
+@media (min-width: 800px) {
+  .dashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 3%;
+  }
+
+  .info .stats-box,
+  .dashboard > * {
+    margin-bottom: 0.7em;
+  }
+
+  .dashboard section:first-child {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .search {
+    display: flex;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,50 @@
+.sl-nav {
+  padding: 0.3em;
+}
+
+.sl-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sl-search {
+  width: 100%;
+}
+
+.sl-shows {
+  padding: 0 0 1.2em 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 30vw);
+  gap: 3vw;
+  justify-items: center;
+  justify-content: space-between;
+}
+
+.sl-shows img {
+  object-fit: cover;
+  width: 100%;
+  height: 40vw;
+}
+
+.sl-shows img:hover {
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+@media (min-width: 800px) {
+  .sl-search {
+    width: auto;
+  }
+
+  .sl-next {
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sl-shows {
+    flex: 1 1 auto;
+  }
+}
