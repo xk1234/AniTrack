@@ -15,10 +15,10 @@
   .login-details li {
     list-style: none;
     margin: 2em auto;
-    font-size: 1.4em;
+    font-size: 1.8em;
   }
 
   .list-icon {
-    margin-right: 1em;
+    margin-right: 0.4em;
   }
 }

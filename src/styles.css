@@ -87,7 +87,8 @@ a.button {
 }
 
 button:hover,
-a.button:hover {
+a.button:hover,
+.active {
   background: var(--local, black);
   color: white;
   cursor: pointer;
@@ -106,6 +107,95 @@ select {
   font-size: var(--paragraph-small);
   padding: 0.3em;
   border-radius: 10px;
+}
+
+.icon-btn {
+  padding: 3px;
+  border: none;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  margin: 0 0.2em;
+}
+
+.btn-group {
+  display: flex;
+}
+
+svg,
+path {
+  padding: 0;
+  margin: 0;
+}
+
+span.badge {
+  font-size: 0.5em;
+  padding: 0.3em 0.5em;
+  border: 1px solid black;
+  color: white;
+  border-radius: 10px;
+  background: var(--dark);
+  margin-top: 0.3em;
+}
+
+.tabs {
+  border: 2px solid black;
+  padding: 5px 0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tabs button {
+  border: none;
+  border-radius: 10px;
+  margin: 0 5px;
+}
+
+.tabs button.active {
+  background: var(--main, var(--dark));
+}
+
+a:hover {
+  color: black;
+}
+
+.lds-facebook {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #fff;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-facebook div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+@keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+  50%,
+  100% {
+    top: 24px;
+    height: 32px;
+  }
 }
 
 @media (min-width: 800px) {

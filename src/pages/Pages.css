@@ -33,5 +33,21 @@
   .search {
     display: flex;
     justify-content: space-between;
+    gap: 5%;
+  }
+
+  .all-show-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2em;
+  }
+
+  .all-show-info div:first-child {
+    margin-right: 2em;
+  }
+
+  .main-details {
+    flex: 0 1 260%;
   }
 }

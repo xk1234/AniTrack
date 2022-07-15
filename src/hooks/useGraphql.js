@@ -1,31 +1,46 @@
-const DUMMY_PARAMS = {
-  popularity_lesser: 30000,
-  status_in: ["FINISHED"],
-  averageScore_greater: 80,
-  endDate_lesser: 20200713,
-  sort: "POPULARITY_DESC"
-};
+function useGraphql() {
+  return function createQuery(query_params, page_params) {
+    let my_params = "";
+    let my_page_params = "perPage:50,";
 
-function useGraphql(query_params, page_params) {
-  let my_params = "";
+    for (const key in page_params) {
+      my_page_params += `${key}:${page_params[key]},`;
+    }
 
-  for (const key in DUMMY_PARAMS) {
-    my_params += key + ":" + DUMMY_PARAMS[key] + ",";
-  }
+    for (const key in query_params) {
+      if (Array.isArray(query_params[key])) {
+        my_params += `${key}:[${query_params[key].map(
+          (item) => `\"${item}\"`
+        )}],`;
+      } else {
+        my_params += `${key}:${query_params[key]},`;
+      }
+    }
 
-  let query = `query {
-    Page(perPage:50) {
+    let query = `query {
+    Page(${my_page_params}) {
+
+      pageInfo {
+    	  total
+    	  perPage
+    	  currentPage
+    	  lastPage
+    	  hasNextPage
+    	}
+
       media(${my_params}) {
         id
         title {
           english
           romaji
         }
+        type
         averageScore
         coverImage {
           large
           medium
         }
+        description
         endDate {
           year
           month
@@ -48,8 +63,8 @@ function useGraphql(query_params, page_params) {
       }
     }
   }`;
-
-  return query;
+    return query;
+  };
 }
 
 export default useGraphql;

@@ -5,16 +5,15 @@ const useFetch = (dataFn) => {
   const [error, setError] = useState("");
 
   const getResponse = (url, options) => {
-    setLoading();
+    setLoading((old) => true);
     fetch(url, options)
       .then((response) => response.json())
       .then((data) => {
         dataFn(data.data);
-        setLoading(false);
       })
       .catch((err) => {
         setError(err.message);
-        setLoading(false);
+        console.log(err, "err");
       });
     setLoading(false);
   };

@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../app/authSlice";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar() {
   const [active, setActive] = useState(false);
@@ -28,6 +30,13 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
+      {!isLoggedIn ? (
+        <Link to="/search">
+          <FontAwesomeIcon icon={faSearch} size="2x" className="list-icon" />
+        </Link>
+      ) : (
+        ""
+      )}
       {active ? <NavToggle setClosed={closeHandler} /> : ""}
       {isLoggedIn ? (
         <button

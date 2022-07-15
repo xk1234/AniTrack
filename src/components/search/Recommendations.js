@@ -1,43 +1,46 @@
 import "./Recommendations.css";
 import useGraphql from "../../hooks/useGraphql.js";
 import useFetch from "../../hooks/useFetch.js";
+import { useRef } from "react";
+import { faComments } from "@fortawesome/free-regular-svg-icons";
 
 const Recommendations = (props) => {
-  const processData = (data) => {
-    props.showHandler(data.Page.media);
-  };
-
-  const query = useGraphql();
-  const [error, loading, sendQuery] = useFetch(processData);
+  const selectedRef = useRef();
 
   const submitHandler = (e) => {
     e.preventDefault();
     //build request
-
-    sendQuery("https://graphql.anilist.co", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({
-        query: query
-      })
-    });
+    const selected = selectedRef.current.value;
+    props.showHandler(selected);
   };
 
   return (
     <form onSubmit={submitHandler}>
       <h1>Find Shows</h1>
-      <p></p>
       <div className="form-inputs">
         <div className="form-control">
-          <label htmlFor="main">What are you looking for?</label>
-          <select name="main" id="main">
+          <label htmlFor="main">One Click Recommendations</label>
+          <select name="main" id="main" ref={selectedRef}>
             <option value="new_viewer">I'm New To Anime & Manga</option>
             <option value="underrated">Looking for something underrated</option>
-            <option value="new_viewer">
-              I'm looking for an established, long running series
+            <option value="heartwarming">
+              I want something to take my mind off the stresses of daily life
+            </option>
+            <option value="existential">
+              I’m bored and want something that truly breaks the mold and make
+              me ponder my existence
+            </option>
+            <option value="exciting">
+              I want something exciting that keeps me at the edge of my seat
+            </option>
+            <option value="good_recent">
+              I want to watch a good and recent show
+            </option>
+            <option value="cry">
+              I want something sad that allows me to have a good cry
+            </option>
+            <option value="school_rom">
+              I want a school romance to relax and laugh about
             </option>
           </select>
         </div>

@@ -1,0 +1,33 @@
+.user-facts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 95%;
+}
+
+.user-facts h1 {
+  font-size: 1.6em;
+}
+.user-facts .badge {
+  border: 3px solid black;
+  font-size: 1.7em;
+  margin: 1em 0;
+  background: var(--success-300);
+}
+
+.badge p {
+  margin: 0.4em auto;
+}
+
+.favorites * {
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 800px) {
+  .desktop-hidden {
+    display: none;
+  }
+}

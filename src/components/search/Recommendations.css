@@ -7,6 +7,10 @@
   margin-bottom: 0.6em;
 }
 
+.form-control select {
+  padding: 0.5em 0.3em;
+}
+
 .submit-btn {
   background: var(--secondary-300);
   width: 100%;

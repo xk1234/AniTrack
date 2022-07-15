@@ -10,6 +10,7 @@ nav.navbar {
   background-color: white;
   box-shadow: 6px 0px 21px 1px #4f4f4f;
   padding: 0 1em;
+  z-index: 2;
 }
 
 .hamburger {

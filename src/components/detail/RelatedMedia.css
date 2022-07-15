@@ -1,0 +1,14 @@
+.related-display {
+  display: flex;
+  overflow: auto;
+}
+
+.related-display::-webkit-scrollbar {
+  display: none;
+}
+
+.related-display img {
+  margin-right: 1em;
+  border: 2px solid black;
+  max-height: 190px;
+}

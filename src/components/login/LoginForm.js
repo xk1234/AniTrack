@@ -36,8 +36,8 @@ const LoginForm = (props) => {
     if (emailValid && pwValid) {
       //send request to server
       const supabase = createClient(
-        "https://bifpnhhoctkgwdiklsle.supabase.co",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJpZnBuaGhvY3RrZ3dkaWtsc2xlIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTY2NjQxOTUsImV4cCI6MTk3MjI0MDE5NX0.DuBIDH_sr86xsolR0EehfgKuJ_7DJriNuGiBnDghlQ4"
+        "https://bvdfbzafkqrigsrqsvul.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2ZGZiemFma3FyaWdzcnFzdnVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTc4NjU0NDQsImV4cCI6MTk3MzQ0MTQ0NH0.r8wEKoUqgiDbwMGqcrvF53gsFan0pWoaD8LCfKztDVQ"
       );
       async function signInWithEmail() {
         const { user, session, error } = await supabase.auth.signIn({
