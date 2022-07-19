@@ -2,10 +2,10 @@
   display: flex;
   width: 95%;
   flex-direction: column;
-  margin: 1.5em auto;
+  margin-bottom: 1.5em;
 }
 .key-facts h1 {
-  font-size: 1.6em;
+  font-size: 1.9em;
 }
 
 .genres {

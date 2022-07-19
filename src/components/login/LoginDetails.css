@@ -18,6 +18,12 @@
     font-size: 1.8em;
   }
 
+  .login-details li * {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+  }
+
   .list-icon {
     margin-right: 0.4em;
   }

@@ -1,9 +1,10 @@
 import "./LoginForm.css";
 import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { createClient } from "@supabase/supabase-js";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../../app/authSlice";
+import { supabase } from "../../app/supabaseClient";
+import { showMessage, hideMessage } from "../../app/messageSlice";
 
 const LoginForm = (props) => {
   const emailRef = useRef();
@@ -35,10 +36,6 @@ const LoginForm = (props) => {
     //complete validation
     if (emailValid && pwValid) {
       //send request to server
-      const supabase = createClient(
-        "https://bvdfbzafkqrigsrqsvul.supabase.co",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2ZGZiemFma3FyaWdzcnFzdnVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTc4NjU0NDQsImV4cCI6MTk3MzQ0MTQ0NH0.r8wEKoUqgiDbwMGqcrvF53gsFan0pWoaD8LCfKztDVQ"
-      );
       async function signInWithEmail() {
         const { user, session, error } = await supabase.auth.signIn({
           email: email,
@@ -46,15 +43,37 @@ const LoginForm = (props) => {
         });
         if (!error) {
           //login successful, store user data in store
-          console.log(user, session);
           dispatch(
             login({
               user_id: user.user_id,
-              access_token: session.access_token
+              access_token: session.access_token,
+              email: user.email
             })
           );
           //navigate back to dashboard
+          dispatch(
+            showMessage({
+              message: `Welcome ${email}`,
+              status: "success"
+            })
+          );
+          setTimeout(() => {
+            dispatch(hideMessage());
+          }, 3000);
           navigate("/dashboard", { replace: true });
+        } else {
+          console.log(error);
+          dispatch(
+            showMessage({
+              message:
+                "Invalid username or password. No Account? Click Here to Sign Up",
+              status: "error",
+              link: "/sign-up"
+            })
+          );
+          setTimeout(() => {
+            dispatch(hideMessage());
+          }, 3000);
         }
       }
       signInWithEmail();
@@ -78,7 +97,7 @@ const LoginForm = (props) => {
         />
       </div>
       <div className="login-links">
-        <Link to="#">Sign Up</Link>
+        <Link to="/sign-up">Sign Up</Link>
         <Link to="#">Forgot Password</Link>
       </div>
       <button type="submit" className="login-submit">

@@ -6,6 +6,7 @@ import RelatedMedia from "../components/detail/RelatedMedia";
 import UserFacts from "../components/detail/UserFacts";
 import ShowDetails from "../components/detail/ShowDetails";
 import useFetch from "../hooks/useFetch";
+import Reviews from "../components/detail/Reviews";
 const months = [
   "Jan",
   "Feb",
@@ -26,8 +27,10 @@ const Detail = (props) => {
   const processInfo = (data) => {
     const show = data.Media;
     show.title = show.title.english ?? show.title.romaji;
-    show.startDate = `${months[show.startDate.month]} ${show.startDate.year}`;
-    show.endDate = `${months[show.endDate.month]} ${show.endDate.year}`;
+    show.startDate = `${months[show.startDate.month - 1]} ${
+      show.startDate.year
+    }`;
+    show.endDate = `${months[show.endDate?.month - 1]} ${show.endDate.year}`;
     setShowInfo(show);
   };
 
@@ -37,7 +40,19 @@ const Detail = (props) => {
   useEffect(() => {
     const url = "https://graphql.anilist.co/";
     const query = `{
+      
       Media(id: ${params.mediaId}) {
+        reviews {
+          edges {
+            node {
+              id
+              summary
+              rating
+              createdAt
+              body
+            }
+          }
+        }
         ...MediaInfo
         averageScore
         popularity
@@ -103,13 +118,23 @@ const Detail = (props) => {
           <div></div>
         </div>
       ) : (
-        <div className="all-show-info">
-          <UserFacts showPic={showInfo.coverImage} title={showInfo.title} />
-          <div className="main-detailsS">
-            <ShowDetails show={showInfo} />
-            <RelatedMedia related={showInfo.relations} />
+        <Fragment>
+          <div className="all-show-info">
+            <UserFacts
+              showPic={showInfo.coverImage}
+              title={showInfo.title}
+              id={showInfo.id}
+              num={Math.max(showInfo.episodes, showInfo.chapters)}
+            />
+            <div className="main-details">
+              <ShowDetails show={showInfo} />
+              <RelatedMedia related={showInfo.relations} />
+            </div>
           </div>
-        </div>
+          <Reviews
+            reviews={showInfo.reviews?.edges?.map((review) => review.node)}
+          />
+        </Fragment>
       )}
     </Fragment>
   );

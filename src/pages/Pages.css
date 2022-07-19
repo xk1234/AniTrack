@@ -15,7 +15,7 @@
   .dashboard {
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: flex-start;
     gap: 3%;
   }
 
@@ -41,13 +41,15 @@
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 2em;
-  }
-
-  .all-show-info div:first-child {
-    margin-right: 2em;
+    width: 95vw;
+    gap: 3%;
   }
 
   .main-details {
-    flex: 0 1 260%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1 1 auto;
+    max-width: 65vw;
   }
 }

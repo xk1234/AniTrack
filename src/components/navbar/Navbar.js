@@ -8,10 +8,13 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { showMessage, hideMessage } from "../../app/messageSlice";
 
 export default function Navbar() {
   const [active, setActive] = useState(false);
   const isLoggedIn = useSelector((state) => state.auth.access_token);
+  const email = useSelector((state) => state.auth.email);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -25,6 +28,15 @@ export default function Navbar() {
 
   const logoutHandler = () => {
     dispatch(logout());
+    dispatch(
+      showMessage({
+        message: `Successfully logged out of ${email} account`,
+        status: "success"
+      })
+    );
+    setTimeout(() => {
+      dispatch(hideMessage());
+    }, 3000);
     navigate("/login", { replace: true });
   };
 
@@ -70,7 +82,7 @@ export default function Navbar() {
             Login
           </Link>
           <Link
-            to="#"
+            to="/sign-up"
             className="button nav-mobile show-mobile"
             style={{ "--local": "var(--danger-100)" }}
           >

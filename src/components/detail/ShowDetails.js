@@ -7,6 +7,12 @@ import {
   faVideo,
   faStar
 } from "@fortawesome/free-solid-svg-icons";
+import ReactHtmlParser, {
+  processNodes,
+  convertNodeToElement,
+  htmlparser2
+} from "react-html-parser";
+
 const ShowDetails = (props) => {
   let show = props.show;
 
@@ -19,24 +25,40 @@ const ShowDetails = (props) => {
           <FontAwesomeIcon icon={faCalendar} size="1x" className="list-icon" />{" "}
           {show.startDate} - {show.endDate}
         </span>
-        <span className="badge">
-          <FontAwesomeIcon icon={faBook} size="1x" className="list-icon" />{" "}
-          {show.chapters} chapters
-        </span>
-        <span className="badge">
-          <FontAwesomeIcon icon={faVideo} size="1x" className="list-icon" />{" "}
-          {show.episodes} episodes
-        </span>
-        <span className="badge">
-          <FontAwesomeIcon icon={faClock} size="1x" className="list-icon" />{" "}
-          {show.duration} min/ep
-        </span>
-        <span className="badge">
-          <FontAwesomeIcon icon={faStar} size="1x" className="list-icon" />{" "}
-          {show.averageScore}
-        </span>
+        {show.chapters ? (
+          <span className="badge">
+            <FontAwesomeIcon icon={faBook} size="1x" className="list-icon" />{" "}
+            {show.chapters} chapters
+          </span>
+        ) : (
+          ""
+        )}
+        {show.episodes ? (
+          <span className="badge">
+            <FontAwesomeIcon icon={faVideo} size="1x" className="list-icon" />{" "}
+            {show.episodes} episodes
+          </span>
+        ) : (
+          ""
+        )}
+        {show.duration ? (
+          <span className="badge">
+            <FontAwesomeIcon icon={faClock} size="1x" className="list-icon" />{" "}
+            {show.duration} min/ep
+          </span>
+        ) : (
+          ""
+        )}
+        {show.averageScore ? (
+          <span className="badge">
+            <FontAwesomeIcon icon={faStar} size="1x" className="list-icon" />{" "}
+            {show.averageScore}
+          </span>
+        ) : (
+          ""
+        )}
       </div>
-      <p>{show.description}</p>
+      <p>{ReactHtmlParser(show.description)}</p>
     </div>
   );
 };

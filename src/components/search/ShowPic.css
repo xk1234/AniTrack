@@ -24,10 +24,18 @@
   background: var(--warning-300);
   padding: 0.5em;
   color: var(--dark);
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 0 0 10px 0;
   outline: 2px solid var(--dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.show-icon > * {
+  width: 20px;
+  height: 20px;
 }
 
 .show-pic:hover {
@@ -51,5 +59,15 @@
 @media (min-width: 800px) {
   .show-pic .title {
     font-size: 1em;
+  }
+  .show-icon > * {
+    width: 30px;
+    height: 30px;
+  }
+
+  .show-icon {
+    width: 40px;
+    height: 40px;
+    justify-content: flex-start;
   }
 }

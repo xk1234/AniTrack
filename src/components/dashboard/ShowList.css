@@ -13,21 +13,19 @@
 }
 
 .sl-shows {
-  padding: 0 0 1.2em 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 30vw);
-  gap: 3vw;
+  grid-template-columns: repeat(auto-fill, 90px);
+  gap: 0.5em;
   justify-items: center;
   justify-content: space-between;
+  margin-bottom: 1em;
 }
 
 .sl-shows img {
   object-fit: cover;
-  width: 100%;
-  height: 40vw;
 }
 
-.sl-shows img:hover {
+.sl-shows > *:hover {
   box-shadow: var(--shadow);
   cursor: pointer;
 }
@@ -46,5 +44,7 @@
 
   .sl-shows {
     flex: 1 1 auto;
+    grid-template-columns: repeat(auto-fill, 140px);
+    gap: 15px 15px;
   }
 }

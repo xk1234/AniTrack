@@ -21,9 +21,14 @@ const Pages = (props) => {
   };
 
   useEffect(() => {
-    // console.log(page, itemIndex[0], itemIndex[1] + 1);
-    // props.updateDisplay(itemIndex[0], itemIndex[1] + 1);
+    if (props.numItems > 0) {
+      props.onPageChange(itemIndex[0], itemIndex[1] + 1);
+    }
   }, [page]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [props.numItems]);
 
   const selected = "page page-selected";
 
@@ -56,7 +61,7 @@ const Pages = (props) => {
       ) : (
         ""
       )}
-      {page === 1 && totalPages > 3 ? (
+      {page === 1 && totalPages >= 3 ? (
         <button className="page" onClick={pageHandler}>
           {page + 2}
         </button>

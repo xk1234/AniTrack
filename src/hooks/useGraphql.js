@@ -35,7 +35,10 @@ function useGraphql() {
           romaji
         }
         type
+        duration
         averageScore
+        episodes
+        chapters
         coverImage {
           large
           medium
@@ -51,13 +54,6 @@ function useGraphql() {
         relations {
           edges {
             relationType
-          }
-          nodes {
-            title {
-              romaji
-              english
-            }
-            averageScore
           }
         }
       }

@@ -71,7 +71,8 @@ span,
 button,
 a,
 label,
-li {
+li,
+div {
   font-family: "Josefin Sans", serif;
 }
 
@@ -102,7 +103,7 @@ a.button:hover,
 input,
 select {
   border: 3px solid black;
-  font-family: "Josefin Sans";
+  font-family: "Josefin Sans", serif;
   color: black;
   font-size: var(--paragraph-small);
   padding: 0.3em;

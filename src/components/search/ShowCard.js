@@ -2,6 +2,11 @@ import "./ShowCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook, faVideo } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import ReactHtmlParser, {
+  processNodes,
+  convertNodeToElement,
+  htmlparser2
+} from "react-html-parser";
 
 const months = [
   "Jan",
@@ -33,10 +38,10 @@ const ShowCard = (props) => {
           />
           <span className="badge">Score: {show.averageScore}</span>
           <span className="badge">
-            Ended: {months[show.endDate.month]} {show.endDate.year}
+            Ended: {months[show.endDate.month - 1]} {show.endDate.year}
           </span>
         </div>
-        <p>{show?.description?.substring(0, 200) + "..."}</p>
+        <p>{ReactHtmlParser(show?.description?.substring(0, 200)) + "..."}</p>
       </div>
       <Link to={`/detail/${show.id}`}></Link>
     </div>

@@ -26,7 +26,8 @@ let configObj = {
     status_in: "FINISHED",
     averageScore_greater: 70,
     endDate_lesser: 20210713,
-    sort: "POPULARITY_DESC"
+    sort: "POPULARITY_DESC",
+    format_not_in: "[OVA,MUSIC]"
   },
   existential: {
     popularity_lesser: 200000,
@@ -54,7 +55,7 @@ let configObj = {
     sort: "END_DATE_DESC"
   },
   cry: {
-    popularity_lesser: 75000,
+    popularity_lesser: 150000,
     genre_in: ["Drama"],
     genre_not_in: ["Sports", "Action"],
     tag_in: ["Tragedy"],

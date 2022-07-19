@@ -12,8 +12,19 @@
 }
 .user-facts .badge {
   border: 3px solid black;
-  font-size: 1.7em;
+  font-size: 1.5em;
   margin: 1em 0;
+}
+
+.badge.watching {
+  background: var(--warning-300);
+}
+
+.badge.primary {
+  background: var(--primary-300);
+}
+
+.badge.success {
   background: var(--success-300);
 }
 
@@ -29,5 +40,9 @@
 @media (min-width: 800px) {
   .desktop-hidden {
     display: none;
+  }
+
+  .user-facts {
+    width: 23vw;
   }
 }
