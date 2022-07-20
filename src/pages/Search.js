@@ -115,6 +115,19 @@ const Search = (props) => {
     });
   };
 
+  const searchHandler = (searchterm) => {
+    sendQuery("https://graphql.anilist.co", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        query: constructQuery({ search: searchterm })
+      })
+    });
+  };
+
   const seeMore = () => {
     getNewShows("https://graphql.anilist.co", {
       method: "POST",
@@ -130,7 +143,10 @@ const Search = (props) => {
 
   return (
     <div className="search">
-      <Recommendations showHandler={showHandler} />
+      <Recommendations
+        showHandler={showHandler}
+        searchHandler={searchHandler}
+      />
       <ShowDisplay
         loading={loading}
         shows={shows}

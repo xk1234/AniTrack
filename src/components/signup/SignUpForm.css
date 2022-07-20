@@ -28,8 +28,9 @@
 }
 
 .signup-submit:hover {
-  background: var(--light);
-  color: var(--dark);
+  background: var(--primary-100);
+  color: var(--light);
+  border: 3px solid var(--primary-100);
 }
 
 .signup-links {

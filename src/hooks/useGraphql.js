@@ -10,8 +10,10 @@ function useGraphql() {
     for (const key in query_params) {
       if (Array.isArray(query_params[key])) {
         my_params += `${key}:[${query_params[key].map(
-          (item) => `\"${item}\"`
+          (item) => `"${item}"`
         )}],`;
+      } else if (key === "search") {
+        my_params += `${key}:"${query_params[key]}",`;
       } else {
         my_params += `${key}:${query_params[key]},`;
       }

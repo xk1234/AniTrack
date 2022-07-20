@@ -13,7 +13,7 @@
 .user-facts .badge {
   border: 3px solid black;
   font-size: 1.5em;
-  margin: 1em 0;
+  margin: 0.7em 0;
 }
 
 .badge.watching {
@@ -32,9 +32,53 @@
   margin: 0.4em auto;
 }
 
-.favorites * {
+.favorites *,
+.setprogress button * {
   margin: 0;
   padding: 0;
+}
+
+.favorites svg {
+  margin-right: 0.5em;
+}
+
+.setprogress {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4em;
+  margin-top: 1em;
+  gap: 5%;
+}
+
+.setprogress button {
+  padding: 0.5em;
+}
+
+.start-show button {
+  width: 100%;
+  margin: 0.5em auto;
+  border-radius: 0;
+  background: var(--warning-300);
+  border: 3px solid var(--warning-300);
+}
+
+.start-show button:hover {
+  background: var(--warning-200);
+  border: 3px solid var(--warning-200);
+  color: white;
+}
+
+.start-show button:last-child {
+  background: var(--success-300);
+  border: 3px solid var(--success-300);
+  color: black;
+}
+.start-show button:last-child:hover {
+  background: var(--success-200);
+  border: 3px solid var(--success-200);
+  color: white;
 }
 
 @media (min-width: 800px) {

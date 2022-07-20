@@ -69,8 +69,6 @@ const ShowDisplay = (props) => {
   } else if (format === "list") {
   }
 
-  console.log(props.loading);
-
   return (
     <div className="show-area">
       <div className="top-row">

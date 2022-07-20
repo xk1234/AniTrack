@@ -1,22 +1,24 @@
 import "./RelatedMedia.css";
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
+import RelatedShow from "./RelatedShow";
 const RelatedMedia = (props) => {
   return (
     <Fragment>
       <h2>Related Media</h2>
-      <div className="related-display">
-        {props.related?.nodes?.map((rShow) => (
-          <div className="related-show">
-            <img
+      {props.related?.nodes?.length ? (
+        <div className="related-display">
+          {props.related?.nodes?.map((rShow, i) => (
+            <RelatedShow
               key={rShow.id}
-              src={rShow.coverImage.extraLarge}
-              alt={rShow.title.english}
+              rShow={rShow}
+              relation={props.related?.edges[i].relationType}
             />
-            <Link to={`/detail/${rShow.id}`}></Link>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <p>Nothing Found :(</p>
+      )}
     </Fragment>
   );
 };

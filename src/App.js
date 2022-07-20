@@ -7,6 +7,8 @@ import Search from "./pages/Search";
 import Detail from "./pages/Detail";
 import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp";
+import HomePage from "./pages/HomePage";
+
 import Navbar from "./components/navbar/Navbar";
 import Message from "./components/ui/Message";
 import { useSelector } from "react-redux";
@@ -25,6 +27,7 @@ export default function App() {
           ""
         )}
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/search" element={<Search />} />

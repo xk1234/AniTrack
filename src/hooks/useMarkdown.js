@@ -7,9 +7,13 @@ const useMarkdown = (text) => {
   const linkReg = /\[(.*?)\]\((.+?)\)/gi;
   const imgReg2 = /\[image\]\((.+?)\)/gi;
   const centerReg = /~~~(.+?)~~~/gi;
+  const code = /```(.*?)```/gi;
+  const codeReg2 = /~~~/gi;
   const headerReg = /#(.+)/gi;
   const bqReg = />"(.+?)"/gi;
   text = text
+    .replace(code, "$1")
+    .replace(codeReg2, "")
     .replace(centerReg, "<center>$1</center>")
     .replace(imgReg, '<img src="$1" alt="" />')
     .replace(imgReg2, '<img src="$1" alt="" />')

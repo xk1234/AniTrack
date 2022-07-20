@@ -1,7 +1,7 @@
 .show-display {
   margin: 2em 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 85px);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px 10px;
 }
 
@@ -42,6 +42,14 @@
 .top-row h1 {
   margin: 0;
   margin-top: 1em;
+  flex: 1 1 40%;
+  line-height: 1.3em;
+}
+
+.top-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .top-row .tabs {
@@ -72,7 +80,7 @@
     margin-top: 0;
   }
   .top-row {
-    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
