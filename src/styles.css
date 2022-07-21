@@ -77,7 +77,9 @@ div {
 }
 
 button,
-a.button {
+a.button,
+a.button.solid:hover,
+button.solid:hover {
   border: 3px solid var(--local, black);
   background: white;
   color: var(--local, black);
@@ -89,7 +91,9 @@ a.button {
 
 button:hover,
 a.button:hover,
-.active {
+.active,
+a.button.solid,
+button.solid {
   background: var(--local, black);
   color: white;
   cursor: pointer;

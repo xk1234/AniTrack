@@ -83,7 +83,7 @@ export default function Navbar() {
           </Link>
           <Link
             to="/sign-up"
-            className="button nav-mobile show-mobile"
+            className="button solid nav-mobile show-mobile"
             style={{ "--local": "var(--danger-100)" }}
           >
             Sign Up

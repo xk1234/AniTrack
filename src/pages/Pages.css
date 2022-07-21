@@ -7,13 +7,14 @@
 }
 
 .homepage {
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 75px;
   left: 0;
   right: 0;
-  height: 100vh;
+  bottom: 0;
   padding: 1em 0em;
   display: flex;
+  flex-direction: column;
   background: linear-gradient(
     106.23deg,
     #ffc0f9 10.61%,
@@ -22,6 +23,7 @@
   );
   background-repeat: no-repeat;
   background-attachment: fixed;
+  align-items: stretch;
 }
 
 .homepage-left h1 {
@@ -36,13 +38,14 @@
   align-items: center;
 }
 
-.call-to-action a {
+.call-to-action a.button {
   background: var(--warning-300);
   font-size: var(--paragraph-small);
   padding: 0.6em;
   border-radius: 80px;
   margin-bottom: 1em;
   width: 80vw;
+  white-space: nowrap;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,7 +60,7 @@
   color: var(--light);
 }
 
-.call-to-action a:hover {
+.call-to-action a.button:hover {
   background: var(--warning-200);
   color: black;
 }
@@ -71,7 +74,51 @@
   margin-bottom: 2em;
 }
 
-@media (min-width: 800px) {
+.homepage-right img {
+  display: none;
+  border: 3px solid var(--light);
+  border-radius: 2em;
+  object-fit: cover;
+  min-width: 200px;
+}
+
+@media (min-width: 500px) {
+  .homepage-left {
+    width: 65%;
+    margin: 4em auto;
+  }
+
+  .call-to-action {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10%;
+  }
+
+  .homepage-left h1 {
+    font-size: 3em;
+    text-align: center;
+    line-height: 1.2em;
+  }
+
+  .homepage-right {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .homepage-images {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .homepage-right img {
+    display: block;
+    width: 33%;
+  }
+}
+
+@media (min-width: 1100px) {
   .dashboard {
     display: flex;
     justify-content: space-between;
@@ -115,10 +162,15 @@
   .homepage {
     flex-direction: row;
     padding: 1em 3em;
+    gap: 6%;
   }
 
   .homepage-left {
     flex: 0 1 48%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 48%;
   }
 
   .homepage-left h1 {
@@ -128,15 +180,42 @@
   }
 
   .call-to-action {
-    flex-direction: row;
+    gap: 2%;
   }
 
   .call-to-action a {
-    background: var(--warning-300);
-    font-size: var(--paragraph-medium);
     padding: 0.9em;
     border-radius: 80px;
     margin-right: 1em;
-    width: auto;
+  }
+
+  .homepage-right {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .homepage-images {
+    position: relative;
+    width: 60%;
+  }
+
+  .homepage-right img {
+    width: 100%;
+    display: block;
+  }
+
+  .homepage-right img:nth-child(2) {
+    position: absolute;
+    left: -70px;
+    top: -100px;
+    z-index: -1;
+  }
+
+  .homepage-right img:last-child {
+    position: absolute;
+    left: -30px;
+    top: 100px;
   }
 }

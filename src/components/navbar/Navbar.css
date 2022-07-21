@@ -106,7 +106,7 @@ nav.navbar {
     transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.nav-mobile.nav-mobile {
+.nav-mobile.nav-mobile.nav-mobile.nav-mobile {
   font-size: 0.8em;
   border-radius: 0.8em;
   padding: 0.5em;
@@ -117,7 +117,7 @@ nav.navbar {
 }
 
 @media (min-width: 500px) {
-  .nav-mobile.nav-mobile {
+  .nav-mobile.nav-mobile.nav-mobile.nav-mobile {
     padding: 0.6em;
     border-radius: 30px;
     font-size: var(--paragraph-small);
