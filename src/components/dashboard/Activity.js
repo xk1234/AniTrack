@@ -13,10 +13,6 @@ const Activity = (props) => {
           <p>Watched episode 12 of "Non Non Biyori"</p>
           <small>Date: 11 Jul 2021</small>
         </li>
-        <li>
-          <p>Watched episode 12 of "Non Non Biyori"</p>
-          <small>Date: 11 Jul 2021</small>
-        </li>
       </ul>
     </section>
   );

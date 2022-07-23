@@ -1,6 +1,6 @@
 .message {
-  position: absolute;
-  top: 3vh;
+  position: fixed;
+  top: 15vh;
   left: 10vw;
   right: 10vw;
   border: 3px solid black;
@@ -10,6 +10,7 @@
   align-items: center;
   box-shadow: 0px 10px 13px -7px #000000,
     5px 5px 15px 5px rgba(119, 119, 119, 0);
+  z-index: 100;
 }
 
 .message.error {

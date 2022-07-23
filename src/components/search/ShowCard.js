@@ -24,6 +24,8 @@ const months = [
 ];
 const ShowCard = (props) => {
   const show = props.show;
+  const desc = show?.description?.substring(0, 250) + "...";
+  const parsedDesc = desc.replace(/<.*?>/gi, "");
 
   return (
     <div className="show-card">
@@ -41,7 +43,7 @@ const ShowCard = (props) => {
             Ended: {months[show.endDate.month - 1]} {show.endDate.year}
           </span>
         </div>
-        <p>{ReactHtmlParser(show?.description?.substring(0, 200)) + "..."}</p>
+        <p>{parsedDesc}</p>
       </div>
       <Link to={`/detail/${show.id}`}></Link>
     </div>

@@ -41,7 +41,7 @@
 .call-to-action a.button {
   background: var(--warning-300);
   font-size: var(--paragraph-small);
-  padding: 0.6em;
+  padding: 0.9em 0.6em;
   border-radius: 80px;
   margin-bottom: 1em;
   width: 80vw;
@@ -83,6 +83,18 @@
 }
 
 @media (min-width: 500px) {
+  .info {
+    display: flex;
+    outline: 3px solid pink;
+    justify-content: space-between;
+    height: 270px;
+  }
+
+  .info > * {
+    flex: 0 1 45%;
+    height: 100%;
+  }
+
   .homepage-left {
     width: 65%;
     margin: 4em auto;
@@ -180,13 +192,7 @@
   }
 
   .call-to-action {
-    gap: 2%;
-  }
-
-  .call-to-action a {
-    padding: 0.9em;
-    border-radius: 80px;
-    margin-right: 1em;
+    gap: 10%;
   }
 
   .homepage-right {
