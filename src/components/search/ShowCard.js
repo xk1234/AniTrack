@@ -2,11 +2,6 @@ import "./ShowCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook, faVideo } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import ReactHtmlParser, {
-  processNodes,
-  convertNodeToElement,
-  htmlparser2
-} from "react-html-parser";
 
 const months = [
   "Jan",
@@ -24,7 +19,7 @@ const months = [
 ];
 const ShowCard = (props) => {
   const show = props.show;
-  const desc = show?.description?.substring(0, 250) + "...";
+  const desc = show?.description?.substring(0, 200) + "...";
   const parsedDesc = desc.replace(/<.*?>/gi, "");
 
   return (
