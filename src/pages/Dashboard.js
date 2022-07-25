@@ -11,6 +11,23 @@ import { useState } from "react";
 import { setShowInfo } from "../app/showSlice";
 
 const Dashboard = (props) => {
+  function getShowInfo(arr_of_shows, page) {
+    const query = queryConstructor(
+      { id_in: `[${arr_of_shows}]` },
+      { page: page }
+    );
+    getShows("https://graphql.anilist.co", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        query: query
+      })
+    });
+  }
+  let arr_shows = [];
   const [myshows, setMyshows] = useState([]);
   let progresslist = {};
   const dispatch = useDispatch();
@@ -18,22 +35,14 @@ const Dashboard = (props) => {
   let [allmanga, setAllManga] = useState();
 
   const displayShows = (shows) => {
-    const allshows = shows.Page.media;
-    allshows.map((show) => {
-      show.progress = progresslist["key" + show.id].progress;
-    });
-    setAllAnime(
-      allshows.filter((show) => {
-        return show.type === "ANIME";
-      })
-    );
-    setAllManga(
-      allshows.filter((show) => {
-        return show.type === "MANGA";
-      })
-    );
+    const allshows = shows.Page?.media;
 
-    setMyshows((oldshows) => allshows);
+    if (shows.Page?.pageInfo?.hasNextPage) {
+      getShowInfo(arr_shows, shows.Page?.pageInfo?.currentPage + 1);
+      setMyshows((oldshows) => allshows);
+    } else {
+      setMyshows((oldshows) => oldshows.concat(allshows));
+    }
   };
 
   const isLoggedIn = useSelector((state) => state.auth.access_token);
@@ -42,28 +51,14 @@ const Dashboard = (props) => {
   const [error, loading, getShows] = useFetch(displayShows);
 
   useEffect(() => {
-    function getShowInfo(arr_of_shows) {
-      const query = queryConstructor({ id_in: `[${arr_of_shows}]` });
-      getShows("https://graphql.anilist.co", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: JSON.stringify({
-          query: query
-        })
-      });
-    }
-
     async function getUserShows() {
       const { data, error } = await supabase
         .from("User Media Connection")
         .select()
         .eq("user", user_email);
       if (data && !error) {
-        let arr_shows = data.map((connection) => connection.anilist_id);
-        getShowInfo(arr_shows);
+        arr_shows = data.map((connection) => connection.anilist_id);
+        getShowInfo(arr_shows, 1);
         data.forEach((userinfo) => {
           progresslist["key" + userinfo.anilist_id] = {
             anilist_id: userinfo.anilist_id,
@@ -87,7 +82,7 @@ const Dashboard = (props) => {
     <div className="dashboard">
       <ShowList shows={myshows} />
       <div className="info">
-        <StatsBox anime={allanime} manga={allmanga} />
+        <StatsBox myshows={myshows} />
         <Activity />
       </div>
     </div>

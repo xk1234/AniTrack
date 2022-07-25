@@ -14,11 +14,10 @@
 
 .sl-shows {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 90px);
-  gap: 0.5em;
+  gap: 8px;
   justify-items: center;
   justify-content: space-between;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 }
 
 .sl-shows img {
@@ -30,7 +29,7 @@
   cursor: pointer;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 500px) {
   .sl-search {
     width: auto;
   }
@@ -44,7 +43,6 @@
 
   .sl-shows {
     flex: 1 1 auto;
-    grid-template-columns: repeat(auto-fill, 140px);
     gap: 15px 15px;
   }
 }

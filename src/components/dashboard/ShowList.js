@@ -3,15 +3,18 @@ import Pages from "./Pages";
 import "./ShowList.css";
 import { useEffect, useState } from "react";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
-
+import { useSelector } from "react-redux";
 const ShowList = (props) => {
   const { height, width } = useWindowDimensions();
-  let perPage = 3;
-  if (width < 800) {
-    perPage = 3;
-  } else {
+  let perPage;
+  if (width < 500) {
+    perPage = Math.floor((width - 10) / 120);
+  } else if (width > 500 && width < 1100) {
+    perPage = Math.floor((width - 15) / 155);
+  } else if (width > 1100) {
     perPage = 5;
   }
+  const showinfo = useSelector((state) => state.show.showinfo);
   const [displayedStart, setDisplayedStart] = useState(0);
   const [displayedEnd, setDisplayedEnd] = useState(perPage);
   const [search, setSearch] = useState("");
@@ -36,18 +39,25 @@ const ShowList = (props) => {
   };
 
   const filterHandler = (e) => {
+    console.log(props.shows[1]);
     if (e.target.value === "all") {
       setFiltered(props.shows);
     } else if (e.target.value === "watching") {
       setFiltered(
         props.shows.filter((show) => {
-          return Math.max(show.chapters, show.episodes) > show.progress;
+          return (
+            Math.max(show.chapters, show.episodes) >
+            showinfo["key" + show.id]?.progress
+          );
         })
       );
     } else if (e.target.value === "completed") {
       setFiltered(
         props.shows.filter((show) => {
-          return show.progress > Math.max(show.chapters, show.episodes);
+          return (
+            showinfo["key" + show.id]?.progress >
+            Math.max(show.chapters, show.episodes)
+          );
         })
       );
     }
@@ -79,7 +89,10 @@ const ShowList = (props) => {
           <h4>{filtered.length} shows</h4>
         </div>
       </div>
-      <div className="sl-shows">
+      <div
+        className="sl-shows"
+        style={{ gridTemplateColumns: `repeat(${perPage}, 1fr)` }}
+      >
         {filtered.slice(displayedStart, displayedEnd).map((show) => (
           <ShowPic show={show} key={show.id} />
         ))}

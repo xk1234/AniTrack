@@ -12,18 +12,18 @@
 }
 
 .submit-btn {
-  background: var(--secondary-300);
+  background: var(--primary-300);
   width: 100%;
   border-radius: 0;
-  border-color: var(--secondary-300);
+  border-color: var(--primary-300);
   margin-top: 1em;
 }
 
 .submit-btn:hover {
-  background: var(--secondary-100);
+  background: var(--primary-100);
   width: 100%;
   border-radius: 0;
-  border-color: var(--secondary-100);
+  border-color: var(--primary-100);
 }
 
 .form-row {
@@ -33,7 +33,7 @@
 }
 
 #main {
-  background-color: var(--success-300);
+  background-color: var(--light);
   width: 100%;
 }
 
@@ -57,7 +57,7 @@
   border: 3px solid black;
   margin-bottom: 2em;
   border-radius: 15px;
-  width: 280px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }

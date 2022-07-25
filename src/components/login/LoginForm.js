@@ -1,10 +1,11 @@
 import "./LoginForm.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../app/authSlice";
 import { supabase } from "../../app/supabaseClient";
 import { showMessage, hideMessage } from "../../app/messageSlice";
+import { useSelector } from "react-redux";
 
 const LoginForm = (props) => {
   const emailRef = useRef();
@@ -13,6 +14,27 @@ const LoginForm = (props) => {
   const [passwordValid, setPasswordValid] = useState(true);
   const dispatch = useDispatch();
   let navigate = useNavigate();
+
+  console.log(localStorage.getItem("access_token"), " access");
+  console.log(localStorage.getItem("expiry_date"), new Date().getTime());
+
+  useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      if (localStorage.getItem("expiry_date") > new Date().getTime()) {
+        dispatch(
+          login({
+            email: localStorage.getItem("email"),
+            user_id: localStorage.getItem("user_id"),
+            access_token: localStorage.getItem("access_token"),
+            expiry_date: localStorage.getItem("expiry_date")
+          })
+        );
+        navigate("/dashboard", { replace: true });
+      } else {
+        localStorage.clear();
+      }
+    }
+  }, []);
 
   const loginHandler = (e) => {
     e.preventDefault();
@@ -47,9 +69,14 @@ const LoginForm = (props) => {
             login({
               user_id: user.user_id,
               access_token: session.access_token,
-              email: user.email
+              email: user.email,
+              expiry_date: session.expires_at * 1000
             })
           );
+          localStorage.setItem("user_id", user.user_id);
+          localStorage.setItem("email", user.email);
+          localStorage.setItem("access_token", session.access_token);
+          localStorage.setItem("expiry_date", session.expires_at * 1000);
           //navigate back to dashboard
           dispatch(
             showMessage({

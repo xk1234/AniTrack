@@ -16,7 +16,7 @@ import { showMessage, hideMessage } from "../../app/messageSlice";
 const UserFacts = (props) => {
   const showinfo = useSelector((state) => state.show.showinfo);
   const user_email = useSelector((state) => state.auth.email);
-  let [progress, setProgress] = useState(0);
+  let [progress, setProgress] = useState(-1);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,11 +29,8 @@ const UserFacts = (props) => {
     </div>
   );
 
-  console.log(progress);
-
   const incrementHandler = async () => {
     if (props.num >= progress) {
-      console.log(progress);
       setProgress((progress) => progress + 1);
       const { data, error } = await supabase
         .from("User Media Connection")
@@ -125,7 +122,7 @@ const UserFacts = (props) => {
     );
   }
 
-  if (showinfo["key" + props.id]) {
+  if (progress >= 0) {
     if (progress > props.num) {
       progresschange = "";
     } else {

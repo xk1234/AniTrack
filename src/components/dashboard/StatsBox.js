@@ -12,13 +12,22 @@ import { useState } from "react";
 const StatsBox = (props) => {
   const [showStat, setShowStat] = useState("anime");
   const showinfo = useSelector((state) => state.show.showinfo);
-  let animeprogress = props.anime?.reduce((prev, anime) => {
+
+  const anime = props.myshows.filter((show) => {
+    return show.type === "ANIME";
+  });
+
+  const manga = props.myshows.filter((show) => {
+    return show.type === "MANGA";
+  });
+
+  let animeprogress = anime?.reduce((prev, anime) => {
     return prev + Math.min(showinfo["key" + anime.id].progress, anime.episodes);
   }, 0);
-  let mangaprogress = props.manga?.reduce((prev, manga) => {
+  let mangaprogress = manga?.reduce((prev, manga) => {
     return prev + showinfo["key" + manga.id].progress;
   }, 0);
-  let timewatched = props.anime?.reduce((prev, anime) => {
+  let timewatched = anime?.reduce((prev, anime) => {
     return prev + showinfo["key" + anime.id].progress * anime.duration;
   }, 0);
   let displayed = animeprogress;

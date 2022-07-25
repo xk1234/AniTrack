@@ -123,7 +123,7 @@ const Search = (props) => {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        query: constructQuery({ search: searchterm })
+        query: constructQuery({ search: searchterm, sort: "POPULARITY_DESC" })
       })
     });
   };

@@ -1,8 +1,9 @@
 .show-display {
   margin: 2em 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px 10px;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 27vw));
+  gap: 20px 7px;
+  justify-content: center;
 }
 
 .show-filter {
@@ -35,8 +36,8 @@
 .show-display-card {
   display: flex;
   justify-content: center;
-  flex-direction: column;
   margin: 2em 0;
+  flex-flow: row wrap;
 }
 
 .top-row h1 {
@@ -61,13 +62,18 @@
   margin: 0;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 500px) {
+  .show-display {
+    grid-template-columns: repeat(auto-fill, 160px);
+    gap: 20px 20px;
+  }
+}
+
+@media (min-width: 1100px) {
   .show-display {
     display: grid;
     grid-template-columns: repeat(auto-fill, 140px);
-    gap: 15px 15px;
     width: 50vw;
-    justify-content: center;
   }
   .show-display-card {
     display: grid;

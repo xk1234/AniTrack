@@ -1,0 +1,24 @@
+.profilepic {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 3px solid black;
+}
+
+.profile-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10%;
+  outline: 3px solid pink;
+}
+
+.profile-info {
+  margin-bottom: 1em;
+  flex: 1 1 auto;
+  outline: 3px solid pink;
+}
+
+.profile-area + h2 > svg {
+  color: var(--warning-300);
+}

@@ -36,6 +36,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .call-to-action a.button {
@@ -100,10 +101,16 @@
   }
 
   .call-to-action {
-    display: flex;
     flex-direction: row;
-    align-items: center;
-    gap: 10%;
+    justify-content: center;
+  }
+
+  .call-to-action a:first-child {
+    margin-right: 1em;
+  }
+
+  .call-to-action a {
+    max-width: 260px;
   }
 
   .homepage-left h1 {
@@ -130,6 +137,10 @@
 }
 
 @media (min-width: 1100px) {
+  .call-to-action {
+    justify-content: flex-start;
+  }
+
   .info {
     flex-direction: column;
     height: auto;
@@ -192,11 +203,7 @@
   .homepage-left h1 {
     font-size: 5em;
     text-align: left;
-    line-height: 1.6em;
-  }
-
-  .call-to-action {
-    gap: 10%;
+    line-height: 1.2em;
   }
 
   .homepage-right {
