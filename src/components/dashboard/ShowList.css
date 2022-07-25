@@ -24,11 +24,12 @@
   object-fit: cover;
 }
 
-.sl-shows > *:hover {
-  box-shadow: var(--shadow);
-  cursor: pointer;
+@media (hover: hover) and (pointer: fine) {
+  .sl-shows > *:hover {
+    box-shadow: var(--shadow);
+    cursor: pointer;
+  }
 }
-
 @media (min-width: 500px) {
   .sl-search {
     width: auto;
