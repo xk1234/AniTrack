@@ -7,12 +7,12 @@ import {
   faHeart
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const StatsBox = (props) => {
   const [showStat, setShowStat] = useState("anime");
   const showinfo = useSelector((state) => state.show.showinfo);
-
+  const [fav, setFav] = useState(0);
   const anime = props.myshows.filter((show) => {
     return show.type === "ANIME";
   });
@@ -20,6 +20,16 @@ const StatsBox = (props) => {
   const manga = props.myshows.filter((show) => {
     return show.type === "MANGA";
   });
+
+  useEffect(() => {
+    let allshows = 0;
+    for (let key in showinfo) {
+      if (showinfo[key].favorite) {
+        allshows++;
+      }
+    }
+    setFav(allshows);
+  }, [showinfo]);
 
   let animeprogress = anime?.reduce((prev, anime) => {
     return prev + Math.min(showinfo["key" + anime.id].progress, anime.episodes);
@@ -40,7 +50,7 @@ const StatsBox = (props) => {
     displayed = Math.floor(+timewatched / 60);
     text = "hours watched";
   } else if (showStat === "favorited") {
-    displayed = 0;
+    displayed = fav;
     text = "favorited shows";
   }
 

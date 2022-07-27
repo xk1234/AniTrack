@@ -62,7 +62,8 @@ const Dashboard = (props) => {
         data.forEach((userinfo) => {
           progresslist["key" + userinfo.anilist_id] = {
             anilist_id: userinfo.anilist_id,
-            progress: userinfo.progress
+            progress: userinfo.progress,
+            favorite: userinfo.favorite
           };
         });
         dispatch(

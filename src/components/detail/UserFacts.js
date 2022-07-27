@@ -17,10 +17,13 @@ const UserFacts = (props) => {
   const showinfo = useSelector((state) => state.show.showinfo);
   const user_email = useSelector((state) => state.auth.email);
   let [progress, setProgress] = useState(-1);
+  let [fav, setFav] = useState(false);
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.access_token);
 
   useEffect(() => {
     setProgress(showinfo["key" + props.id]?.progress);
+    setFav(showinfo["key" + props.id]?.favorite);
   }, [showinfo, props.id]);
 
   let badge = (
@@ -111,6 +114,35 @@ const UserFacts = (props) => {
     }
   };
 
+  const toggleFav = async () => {
+    setFav((fav) => !fav);
+    const { data, error } = await supabase
+      .from("User Media Connection")
+      .update({ favorite: !fav })
+      .eq("user", user_email)
+      .eq("anilist_id", props.id);
+
+    let message;
+    let status;
+    if (!fav) {
+      message = `Marked ${props.title} as favorite`;
+      status = "success";
+    } else {
+      message = `Removed ${props.title} from favorites`;
+      status = "error";
+    }
+
+    dispatch(
+      showMessage({
+        message: message,
+        status: status
+      })
+    );
+    setTimeout(() => {
+      dispatch(hideMessage());
+    }, 1000);
+  };
+
   let progresschange = "";
 
   if (user_email) {
@@ -178,10 +210,17 @@ const UserFacts = (props) => {
       <img src={props.showPic?.extraLarge} alt={props.title} />
       {progresschange}
       {badge}
-      <button className="favorites">
-        <FontAwesomeIcon icon={faHeart} size="1x" className="list-icon" />
-        Add To Favorites
-      </button>
+      {isLoggedIn ? (
+        <button
+          className={fav ? "favorites solid" : "favorites"}
+          onClick={toggleFav}
+        >
+          <FontAwesomeIcon icon={faHeart} size="1x" className="list-icon" />
+          {fav ? "Remove" : "Add To"} Favorite
+        </button>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
