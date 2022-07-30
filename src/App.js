@@ -42,6 +42,7 @@ export default function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/detail/:mediaId" element={<Detail />} />
 
             <Route path="*" element={<HomePage />} />
           </Routes>
