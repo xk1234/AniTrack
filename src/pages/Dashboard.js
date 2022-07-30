@@ -35,14 +35,13 @@ const Dashboard = (props) => {
   let [allmanga, setAllManga] = useState();
 
   const displayShows = (shows) => {
+    console.log(shows);
     const allshows = shows.Page?.media;
 
     if (shows.Page?.pageInfo?.hasNextPage) {
       getShowInfo(arr_shows, shows.Page?.pageInfo?.currentPage + 1);
-      setMyshows((oldshows) => allshows);
-    } else {
-      setMyshows((oldshows) => oldshows.concat(allshows));
     }
+    setMyshows((oldshows) => oldshows.concat(allshows));
   };
 
   const isLoggedIn = useSelector((state) => state.auth.access_token);

@@ -37,13 +37,13 @@ const UserFacts = (props) => {
       setProgress((progress) => progress + 1);
       const { data, error } = await supabase
         .from("User Media Connection")
-        .update({ progress: progress })
+        .update({ progress: progress})
         .eq("user", user_email)
         .eq("anilist_id", props.id);
       if (data[0] && !error) {
         dispatch(
           showMessage({
-            message: `Increased episode count by 1`,
+            message: `Increased episode count to ${data[0].progress}`,
             status: "success"
           })
         );

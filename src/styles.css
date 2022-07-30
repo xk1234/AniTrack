@@ -87,6 +87,13 @@ a.button {
   text-decoration: none;
 }
 
+button:disabled,
+a.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+  background-color: var(--danger-100);
+}
+
 .active,
 a.button.solid,
 button.solid {
